@@ -4,8 +4,12 @@ class OxygenTour{
      this.ids=div.map(this.getElements);
     }
     init(){ 
+        //iniciando o css
+        $('head').html('<link rel="stylesheet" href="./css/oxygentour.css" >');
+
         var self=this;  
-        var index=0;  
+        var index=0; 
+        self.disableButtons(index);  
          $( document ).ready(function() {
             $('#teste').addClass('spotlight');
             $('#teste').append($('#painel'));
@@ -13,11 +17,13 @@ class OxygenTour{
 
          $('.next, .prev').on('click', function (event) {
             event.preventDefault();
-            
+             index=1+index;
             self.trocar($(this).hasClass('next'), index); 
-            
-                index=1+index;   
+            self.disableButtons(index);
+            self.scroll();   
         }); 
+
+        
     }
 
 
@@ -36,7 +42,8 @@ class OxygenTour{
                         $(anterior).removeClass('spotlight');
                     }
                     $(this).addClass('spotlight');
-                    $(this).focus();
+                 
+
                     visivel = i + (acionar ? 1 : -1);
                 }
             })    
@@ -48,6 +55,32 @@ class OxygenTour{
         var fullname = [item.id];        
         return fullname;
     }
+
+    disableButtons(index){
+
+        if(this.ids.length==index){
+           $('.next').addClass('disable');
+           $('.next').unbind('click');
+        }else{
+            $('.next').removeClass('disable');
+             $('.next').bind('click');
+        }
+
+        if(0==index){
+           $('.prev').addClass('disable');
+            $('.prev').unbind('click');
+        }else{
+            $('.prev').removeClass('disable');
+        }
+       
+    }
+
+    scroll(){
+         $('html, body').animate({
+        scrollTop: $(".next").offset().top
+        }, 200); 
+    }
+    
 
 }
 

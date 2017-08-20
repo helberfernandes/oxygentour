@@ -1,0 +1,21 @@
+ .spotlight {
+  border: 2px solid #2db84b;
+  border-radius: 4px;
+  box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.5);
+  z-index:40000;
+  position: absolute;
+  background-color:#fff;
+}
+#painel{ 
+  z-index:40000;
+  background-color:#fff;
+  border: 2px solid #2db84b;
+  border-radius: 4px;
+  position:relative;
+  top:30px;
+}
+
+.disable{
+  text-decoration: none;
+  color: #ccc;
+}
